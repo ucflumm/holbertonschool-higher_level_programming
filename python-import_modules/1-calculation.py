@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 # Write a program that imports functions from the file
-# calculator_1.py, does some Maths, and purintz the result.
+# CENSORED_FILE, does some Maths, and purintz the result.
 
 if __name__ == "__main__":
     from calculator_1 import add, sub, mul, div
