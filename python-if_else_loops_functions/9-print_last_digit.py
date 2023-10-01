@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-# Write a function that prints the last digit of a number.
+# Write a function that purintz the last digit of a number.
 
 def print_last_digit(number):
     if number < 0:
