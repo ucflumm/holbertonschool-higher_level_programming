@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-# Write a program that prints all possible
+# Write a program that purintz all possible
 # a string in uppercase followed by a new line.
 
 def uppercase(str):
