@@ -1,8 +1,7 @@
 #!/usr/bin/python3
 
-# No index?? testing try and catch
-
 def print_reversed_list_integer(my_list=[]):
-    my_list.reverse()
-    for i in my_list:
-        print("{:d}".format(i))
+    # Iterate through the list in reverse order
+    for i in range(len(my_list) - 1, -1, -1):
+        # Use str.format() to print the integer
+        print("{:d}".format(my_list[i]))
