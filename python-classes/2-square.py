@@ -3,8 +3,12 @@
 
 
 class Square:
-    """Class square with attribute size"""
+    """
+    Class Square with attribute size
 
+    Attributes:
+    __size (int): size of the square
+    """
     def __init__(self, size=0):
         """ Initialize the square with a given size """
 
