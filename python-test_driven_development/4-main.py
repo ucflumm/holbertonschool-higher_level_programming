@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 print_square = __import__('4-print_square').print_square
 
-print_square(4)
+print_square(2)
 print("")
 print_square(10)
 print("")
@@ -14,3 +14,11 @@ try:
 except Exception as e:
     print(e)
 print("")
+
+try:
+    print_square("string")
+except Exception as e:
+    print(e)
+print("---------")
+print_square(0)
+print("---------")
