@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""a class that defines a square"""
+"""class that defines a square"""
 
 
 class Square:
@@ -14,7 +14,7 @@ class Square:
         initialises an instance of Square
 
         Args:
-        size (int, optional): the size of the square. Defaults to 0
+        size (int, optional): the size of the square. Defaults is 0
         """
         if not isinstance(size, int):
             raise TypeError("size must be an integer")
