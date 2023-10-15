@@ -22,3 +22,5 @@ except Exception as e:
 print("---------")
 print_square(0)
 print("---------")
+print_square()
+print("---------")
