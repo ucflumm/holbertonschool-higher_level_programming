@@ -1,0 +1,33 @@
+Module: "text_indentation"
+===========================
+
+Using "text_indentation"
+------------------------
+
+Import "text_indentation" from the "text_indentation" module:
+    >>> text_indentation = __import__('5-text_indentation').text_indentation
+
+Testing "text_indentation":
+    # Test cases for text_indentation
+
+    # Test case 1
+    # Testing for normal function
+    >>> text_indentation("Wingardium. Leviosa")
+    Wingardium.
+    <BLANKLINE>
+    Leviosa
+
+    # Test case 2
+    # Testing for no parameters
+    >>> text_indentation()
+    Traceback (most recent call last):
+    ...
+    TypeError: text_indentation() missing 1 required positional argument: 'text'
+
+    # Test case 3
+    # Testing for non-string parameters
+    >>> text_indentation(3.14159265)
+    Traceback (most recent call last):
+    ...
+    TypeError: text must be a string
+
