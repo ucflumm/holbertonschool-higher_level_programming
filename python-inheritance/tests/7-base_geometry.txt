@@ -12,6 +12,26 @@ Traceback (most recent call last):
     ...
 Exception: area() is not implemented
 
+# Validate function
+>>> 'area' in dir(BaseGeometry)
+True
+
+>>> 'integer_validator' in dir(BaseGeometry)
+True
+
+# Test area implemented
+>>> bg2 = BaseGeometry()
+>>> bg2.area()
+Traceback (most recent call last):
+    ...
+Exception: area() is not implemented
+
+# Test the integer_validator method with a no-args
+>>> bg.integer_validator()
+Traceback (most recent call last):
+    ...
+TypeError: BaseGeometry.integer_validator() missing 2 required positional arguments: 'name' and 'value'
+
 # Test the integer_validator method with a valid integer
 >>> bg.integer_validator("test_value", 5)
 
@@ -47,3 +67,21 @@ ValueError: test_value must be greater than 0
 Traceback (most recent call last):
     ...
 TypeError: test_value must be an integer
+
+# Test the integer_validator with extra args
+>>> bg.integer_validator("test_value", 5, 6, 7)
+Traceback (most recent call last):
+    ...
+TypeError: BaseGeometry.integer_validator() takes 3 positional arguments but 5 were given
+
+# Test the integer_validator with broken args
+>>> bg.integer_validator("test_value")
+Traceback (most recent call last):
+    ...
+TypeError: BaseGeometry.integer_validator() missing 1 required positional argument: 'value'
+
+# Test the integer_validator with typo args
+>>> bg.integer_validator("test_value", val=5)
+Traceback (most recent call last):
+    ...
+TypeError: BaseGeometry.integer_validator() got an unexpected keyword argument 'val'
