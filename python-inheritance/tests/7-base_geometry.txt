@@ -1,0 +1,28 @@
+Module: "BaseGeometry"
+=======================
+
+>>> BaseGeometry = __import__('7-base_geometry').BaseGeometry
+>>>
+# Create a BaseGeometry object
+>>> bg = BaseGeometry()
+
+# Test the area method
+>>> bg.area()
+Traceback (most recent call last):
+    ...
+Exception: area() is not implemented
+
+# Test the integer_validator method with a valid integer
+>>> bg.integer_validator("test_value", 5)
+
+# Test the integer_validator method with a non-integer value
+>>> bg.integer_validator("test_value", "string")
+Traceback (most recent call last):
+    ...
+TypeError: test_value must be an integer
+
+# Test the integer_validator method with a negative integer
+>>> bg.integer_validator("test_value", -5)
+Traceback (most recent call last):
+    ...
+ValueError: test_value must be greater than 0
