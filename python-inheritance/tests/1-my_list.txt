@@ -1,4 +1,4 @@
-Module: "my_list
+Module: "my_list"
 ================
 
 >>> MyList = __import__('1-my_list').MyList
