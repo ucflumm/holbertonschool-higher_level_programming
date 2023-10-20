@@ -21,3 +21,22 @@ Using MyList:
 # Test print_sorted after adding more elements
 >>> my_list.print_sorted()
 [1, 2, 3, 4, 5]
+
+>>> my_list2 = MyList([10])
+>>> my_list2.print_sorted()
+[10]
+
+>>> my_list3 = MyList([-9, 8, -4, -4, 5, 6, 7, 8, 9, 10])
+>>> my_list3.print_sorted()
+[-9, -4, -4, 5, 6, 7, 8, 8, 9, 10]
+
+>>> a = []
+>>> my_list4 = MyList(a)
+>>> my_list4.print_sorted()
+[]
+
+>>> my_list5 = [1, 2, 3]
+>>> my_list5.print_sorted()
+Traceback (most recent call last):
+    ...
+AttributeError: 'list' object has no attribute 'print_sorted'
