@@ -40,3 +40,12 @@ Using MyList:
 Traceback (most recent call last):
     ...
 AttributeError: 'list' object has no attribute 'print_sorted'
+
+>>> my_list6 = MyList([1, 1])
+>>> my_list6.print_sorted()
+[1, 1]
+
+>>> b = [1, 2, 3]
+>>> my_list7 = MyList(b)
+>>> my_list7.print_sorted()
+[1, 2, 3]
