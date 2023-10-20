@@ -1,105 +1,111 @@
 Module: "BaseGeometry"
-=======================
+======================
 
->>> BaseGeometry = __import__('7-base_geometry').BaseGeometry
->>>
-# Create a BaseGeometry object
->>> bg = BaseGeometry()
+Using BaseGeometry:
+-------------------
 
-# Test the area method
->>> bg.area()
-Traceback (most recent call last):
-    ...
-Exception: area() is not implemented
+Import "BaseGeometry" class from "BaseGeometry" module:
+    >>> BaseGeometry = __import__('7-base_geometry').BaseGeometry
 
-# Validate function
->>> 'area' in dir(BaseGeometry)
-True
+Now use it:
 
->>> 'integer_validator' in dir(BaseGeometry)
-True
+    # Create a BaseGeometry object
+    >>> bg = BaseGeometry()
 
-# Test area implemented
->>> bg2 = BaseGeometry()
->>> bg2.area()
-Traceback (most recent call last):
-    ...
-Exception: area() is not implemented
+    # Test the area method
+    >>> bg.area()
+    Traceback (most recent call last):
+        ...
+    Exception: area() is not implemented
 
-# Test the integer_validator method with a no-args
->>> bg.integer_validator()
-Traceback (most recent call last):
-    ...
-TypeError: BaseGeometry.integer_validator() missing 2 required positional arguments: 'name' and 'value'
+    # Validate function
+    >>> 'area' in dir(BaseGeometry)
+    True
 
-# Test the integer_validator method with a valid integer
->>> bg.integer_validator("test_value", 5)
+    >>> 'integer_validator' in dir(BaseGeometry)
+    True
 
-# Test the integer_validator method with a non-integer value
->>> bg.integer_validator("test_value", "string")
-Traceback (most recent call last):
-    ...
-TypeError: test_value must be an integer
+    # Test area implemented
+    >>> bg2 = BaseGeometry()
+    >>> bg2.area()
+    Traceback (most recent call last):
+        ...
+    Exception: area() is not implemented
 
-# Test the integer_validator method with a negative integer
->>> bg.integer_validator("test_value", -5)
-Traceback (most recent call last):
-    ...
-ValueError: test_value must be greater than 0
+    # Test the integer_validator method with a no-args
+    >>> bg.integer_validator()
+    Traceback (most recent call last):
+        ...
+    TypeError: BaseGeometry.integer_validator() missing 2 required positional arguments: 'name' and 'value'
 
-# Test the integer_validator method with zero
->>> bg.integer_validator("test_value", 0)
-Traceback (most recent call last):
-    ...
-ValueError: test_value must be greater than 0
+    # Test the integer_validator method with a valid integer
+    >>> bg.integer_validator("test_value", 5)
 
-# Test the integer_validator method with a valid large integer
->>> bg.integer_validator("test_value", 1000000)
+    # Test the integer_validator method with a non-integer value
+    >>> bg.integer_validator("test_value", "string")
+    Traceback (most recent call last):
+        ...
+    TypeError: test_value must be an integer
 
-# Test the integer_validator method with a valid large negative integer
->>> bg.integer_validator("test_value", -1000000)
-Traceback (most recent call last):
-    ...
-ValueError: test_value must be greater than 0
+    # Test the integer_validator method with a negative integer
+    >>> bg.integer_validator("test_value", -5)
+    Traceback (most recent call last):
+        ...
+    ValueError: test_value must be greater than 0
 
-# Test the integer_validator method with a valid float
->>> bg.integer_validator("test_value", 3.14)
-Traceback (most recent call last):
-    ...
-TypeError: test_value must be an integer
+    # Test the integer_validator method with zero
+    >>> bg.integer_validator("test_value", 0)
+    Traceback (most recent call last):
+        ...
+    ValueError: test_value must be greater than 0
 
-# Test the integer_validator with extra args
->>> bg.integer_validator("test_value", 5, 6, 7)
-Traceback (most recent call last):
-    ...
-TypeError: BaseGeometry.integer_validator() takes 3 positional arguments but 5 were given
+    # Test the integer_validator method with a valid large integer
+    >>> bg.integer_validator("test_value", 1000000)
 
-# Test the integer_validator with broken args
->>> bg.integer_validator("test_value")
-Traceback (most recent call last):
-    ...
-TypeError: BaseGeometry.integer_validator() missing 1 required positional argument: 'value'
+    # Test the integer_validator method with a valid large negative integer
+    >>> bg.integer_validator("test_value", -1000000)
+    Traceback (most recent call last):
+        ...
+    ValueError: test_value must be greater than 0
 
-# Test the integer_validator with typo args
->>> bg.integer_validator("test_value", val=5)
-Traceback (most recent call last):
-    ...
-TypeError: BaseGeometry.integer_validator() got an unexpected keyword argument 'val'
+    # Test the integer_validator method with a valid float
+    >>> bg.integer_validator("test_value", 3.14)
+    Traceback (most recent call last):
+        ...
+    TypeError: test_value must be an integer
 
-# Test the value being none
->>> bg.integer_validator("test_value", None)
-Traceback (most recent call last):
-    ...
-TypeError: test_value must be an integer
+    # Test the integer_validator with extra args
+    >>> bg.integer_validator("test_value", 5, 6, 7)
+    Traceback (most recent call last):
+        ...
+    TypeError: BaseGeometry.integer_validator() takes 3 positional arguments but 5 were given
 
-# Test the being True
->>> bg.integer_validator("test_value", True)
-Traceback (most recent call last):
-    ...
-TypeError: test_value must be an integer
+    # Test the integer_validator with broken args
+    >>> bg.integer_validator("test_value")
+    Traceback (most recent call last):
+        ...
+    TypeError: BaseGeometry.integer_validator() missing 1 required positional argument: 'value'
 
-# Test get area
->>> bg.area()
-Traceback (most recent call last):
-    ...
-Exception: area() is not implemented
+    # Test the integer_validator with typo args
+    >>> bg.integer_validator("test_value", val=5)
+    Traceback (most recent call last):
+        ...
+    TypeError: BaseGeometry.integer_validator() got an unexpected keyword argument 'val'
+
+    # Test the value being none
+    >>> bg.integer_validator("test_value", None)
+    Traceback (most recent call last):
+        ...
+    TypeError: test_value must be an integer
+
+    # Test the being True
+    >>> bg.integer_validator("test_value", True)
+    Traceback (most recent call last):
+        ...
+    TypeError: test_value must be an integer
+
+    # Test get area
+    >>> bg.area()
+    Traceback (most recent call last):
+        ...
+    Exception: area() is not implemented
