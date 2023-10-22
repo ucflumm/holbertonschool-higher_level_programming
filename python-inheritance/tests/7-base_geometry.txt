@@ -43,7 +43,7 @@ Test the integer_validator method with a no-args:
       File "<doctest 7-base_geometry.txt[8]>", line 1, in <module>
         bg.integer_validator()
     TypeError: integer_validator() missing 2 required positional arguments: 'name' and 'value'
-    
+
 Test the integer_validator method with a valid integer:
     >>> bg.integer_validator("test_value", 5)
 
@@ -84,7 +84,7 @@ Test the integer_validator with broken args:
     >>> bg.integer_validator("test_value")
     Traceback (most recent call last):
         ...
-    TypeError: bg.integer_validator() missing 1 required positional argument: 'value'
+    TypeError: integer_validator() missing 1 required positional argument: 'value'
 
 Test the integer_validator with typo args:
     >>> bg.integer_validator("test_value", val=5)
