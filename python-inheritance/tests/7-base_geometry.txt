@@ -90,7 +90,7 @@ Test the integer_validator with typo args:
     >>> bg.integer_validator("test_value", val=5)
     Traceback (most recent call last):
         ...
-    TypeError: bg.integer_validator() got an unexpected keyword argument 'val'
+    TypeError: integer_validator() got an unexpected keyword argument 'val'
 
 Test the value being none:
     >>> bg.integer_validator("test_value", None)
