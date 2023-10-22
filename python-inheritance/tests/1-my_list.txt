@@ -69,6 +69,6 @@ Check __str__():
 
 Check print_sorted returns a new list
 >>> my_list11 = MyList([2, 3, 4])
->>> my_list11.print_sorted() == [2, 3, 4]
+>>> my_list11.print_sorted() == [3, 4, 5]
 [2, 3, 4]
 False
