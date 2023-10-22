@@ -49,3 +49,19 @@ AttributeError: 'list' object has no attribute 'print_sorted'
 >>> my_list7 = MyList(b)
 >>> my_list7.print_sorted()
 [1, 2, 3]
+
+Check print_sorted returns a new list:
+>>> my_list8 = MyList([1, 2, 3])
+>>> my_list8.print_sorted() == [1, 2, 3]
+True
+
+Check with append():
+>>> my_list9 = MyList([1, 2, 3])
+>>> my_list9.append(4)
+>>> my_list9.print_sorted()
+[1, 2, 3, 4]
+
+Check __str__():
+>>> my_list10 = MyList([1, 2, 3])
+>>> print(my_list10)
+[1, 2, 3]
