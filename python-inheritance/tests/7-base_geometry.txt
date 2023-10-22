@@ -4,10 +4,10 @@ Module: "base_geometry"
 Using "BaseGeometry"
 --------------------
 
-Import "BaseGeometry" from "base_geometry" module:
+Import "BaseGeometry" from the "base_geometry" module:
     >>> BaseGeometry = __import__('7-base_geometry').BaseGeometry
 
-Create a BaseGeometry object
+Create a BaseGeometry instance:
     >>> bg = BaseGeometry()
 
 Now we use it:
