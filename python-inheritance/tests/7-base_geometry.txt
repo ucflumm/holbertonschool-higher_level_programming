@@ -38,9 +38,12 @@ Test area implemented:
 Test the integer_validator method with a no-args:
     >>> bg.integer_validator()
     Traceback (most recent call last):
-        ...
-    TypeError: bg.integer_validator() missing 2 required positional arguments: 'name' and 'value'
-
+      File "/usr/lib/python3.8/doctest.py", line 1336, in __run
+        exec(compile(example.source, filename, "single",
+      File "<doctest 7-base_geometry.txt[8]>", line 1, in <module>
+        bg.integer_validator()
+    TypeError: integer_validator() missing 2 required positional arguments: 'name' and 'value'
+    
 Test the integer_validator method with a valid integer:
     >>> bg.integer_validator("test_value", 5)
 
