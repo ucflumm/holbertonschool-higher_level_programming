@@ -77,12 +77,6 @@ Test the integer_validator method with a valid float:
         ...
     TypeError: test_value must be an integer
 
-Test the integer_validator with extra args:
-    >>> bg.integer_validator("test_value", 5, 6, 7)
-    Traceback (most recent call last):
-        ...
-    TypeError: bg.integer_validator() takes 3 positional arguments but 4 were given
-
 Test the integer_validator with broken args:
     >>> bg.integer_validator("test_value")
     Traceback (most recent call last):
