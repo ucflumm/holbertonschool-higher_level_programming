@@ -39,7 +39,7 @@ Test the integer_validator method with a no-args:
     >>> bg.integer_validator()
     Traceback (most recent call last):
         ...
-    TypeError: BaseGeometry.integer_validator() missing 2 required positional arguments: 'name' and 'value'
+    TypeError: bg.integer_validator() missing 2 required positional arguments: 'name' and 'value'
 
 Test the integer_validator method with a valid integer:
     >>> bg.integer_validator("test_value", 5)
@@ -81,19 +81,19 @@ Test the integer_validator with extra args:
     >>> bg.integer_validator("test_value", 5, 6, 7)
     Traceback (most recent call last):
         ...
-    TypeError: BaseGeometry.integer_validator() takes 3 positional arguments but 5 were given
+    TypeError: bg.integer_validator() takes 3 positional arguments but 5 were given
 
 Test the integer_validator with broken args:
     >>> bg.integer_validator("test_value")
     Traceback (most recent call last):
         ...
-    TypeError: BaseGeometry.integer_validator() missing 1 required positional argument: 'value'
+    TypeError: bg.integer_validator() missing 1 required positional argument: 'value'
 
 Test the integer_validator with typo args:
     >>> bg.integer_validator("test_value", val=5)
     Traceback (most recent call last):
         ...
-    TypeError: BaseGeometry.integer_validator() got an unexpected keyword argument 'val'
+    TypeError: bg.integer_validator() got an unexpected keyword argument 'val'
 
 Test the value being none:
     >>> bg.integer_validator("test_value", None)
