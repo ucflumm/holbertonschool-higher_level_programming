@@ -5,7 +5,7 @@
 
 
 class BaseGeometry:
-    """ 
+    """
         Class BaseGeometry
     """
     def area(self):
