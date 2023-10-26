@@ -84,8 +84,18 @@ class Rectangle(Base):
 
     def display(self):
         """ prints the rectangle using # """
-        for i in range(self.y):
-            print()
+        if self.y > 0:
+            for i in range(self.y):
+                print()
         for i in range(self.height):
             print(" " * self.x + "#" * self.width)
 
+    def update(self, *args, **kwargs):
+        """ updates the rectangle """
+        if args:
+            attrs = ["id", "width", "height", "x", "y"]
+            for i in range(len(args)):
+                setattr(self, attrs[i], args[i])
+        else:
+            for key, value in kwargs.items():
+                setattr(self, key, value)
