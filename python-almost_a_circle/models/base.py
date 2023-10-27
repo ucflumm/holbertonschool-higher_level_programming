@@ -68,6 +68,7 @@ class Base:
         """
         try:
             with open("{}.json".format(cls.__name__), "r") as f:
-                return [cls.create(**obj) for obj in cls.from_json_string(f.read())]
-        except:
+                return [cls.create(**obj)
+                        for obj in cls.from_json_string(f.read())]
+        except FileNotFoundError:
             return []
