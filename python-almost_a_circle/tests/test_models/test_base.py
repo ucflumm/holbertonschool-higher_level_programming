@@ -116,3 +116,6 @@ class TestBase(unittest.TestCase):
         self.assertEqual(b1.save_to_file([{"id": 1}, {"id": 2}, {"id": 3},
                                            {"id": 4}, {"id": 5}]),
                          None)
+
+    if __name__ == "__main__":
+        unittest.main()
