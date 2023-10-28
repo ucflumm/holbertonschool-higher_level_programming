@@ -1,8 +1,10 @@
+#!/usr/bin/python3
 import unittest
 """
     Unit test for Base class
 """
 from models.base import Base
+
 
 class TestBase(unittest.TestCase):
     """ Test cases for Base class """
@@ -57,5 +59,60 @@ class TestBase(unittest.TestCase):
                          '[{"id": 1}, {"id": 2}, {"id": 3}, {"id": 4}, \
 {"id": 5}]')
 
-if __name__ == '__main__':
-    unittest.main()
+    def test_from_json_string(self):
+        """
+            Test from_json_string method
+        """
+        b1 = Base()
+        self.assertEqual(b1.from_json_string(None), [])
+        self.assertEqual(b1.from_json_string("[]"), [])
+        self.assertEqual(b1.from_json_string('[{"id": 1}]'), [{"id": 1}])
+        self.assertEqual(b1.from_json_string('[{"id": 1}, {"id": 2}]'),
+                         [{"id": 1}, {"id": 2}])
+        self.assertEqual(b1.from_json_string('[{"id": 1}, {"id": 2}, \
+{"id": 3}]'), [{"id": 1}, {"id": 2}, {"id": 3}])
+        self.assertEqual(b1.from_json_string('[{"id": 1}, {"id": 2}, \
+{"id": 3}, {"id": 4}]'), [{"id": 1}, {"id": 2}, {"id": 3}, {"id": 4}])
+        self.assertEqual(b1.from_json_string('[{"id": 1}, {"id": 2}, \
+{"id": 3}, {"id": 4}, {"id": 5}]'),
+                         [{"id": 1}, {"id": 2}, {"id": 3}, {"id": 4},
+                          {"id": 5}])
+
+    def test_create(self):
+        """
+            Test create method
+        """
+        b1 = Base()
+        self.assertEqual(b1.create(None), None)
+        self.assertEqual(b1.create([]), [])
+        self.assertEqual(b1.create([{"id": 1}]), [{"id": 1}])
+        self.assertEqual(b1.create([{"id": 1}, {"id": 2}]),
+                         [{"id": 1}, {"id": 2}])
+        self.assertEqual(b1.create([{"id": 1}, {"id": 2}, {"id": 3}]),
+                         [{"id": 1}, {"id": 2}, {"id": 3}])
+        self.assertEqual(b1.create([{"id": 1}, {"id": 2}, {"id": 3},
+                                     {"id": 4}]),
+                         [{"id": 1}, {"id": 2}, {"id": 3}, {"id": 4}])
+        self.assertEqual(b1.create([{"id": 1}, {"id": 2}, {"id": 3},
+                                     {"id": 4}, {"id": 5}]),
+                         [{"id": 1}, {"id": 2}, {"id": 3}, {"id": 4},
+                          {"id": 5}])
+
+    def test_save_to_file(self):
+        """
+            Test save_to_file method
+        """
+        b1 = Base()
+        self.assertEqual(b1.save_to_file([{"id": 1}]), None)
+        self.assertEqual(b1.save_to_file(None), None)
+        self.assertEqual(b1.save_to_file([]), None)
+        self.assertEqual(b1.save_to_file([{"id": 1}]), None)
+        self.assertEqual(b1.save_to_file([{"id": 1}, {"id": 2}]), None)
+        self.assertEqual(b1.save_to_file([{"id": 1}, {"id": 2}, {"id": 3}]),
+                         None)
+        self.assertEqual(b1.save_to_file([{"id": 1}, {"id": 2}, {"id": 3},
+                                           {"id": 4}]),
+                         None)
+        self.assertEqual(b1.save_to_file([{"id": 1}, {"id": 2}, {"id": 3},
+                                           {"id": 4}, {"id": 5}]),
+                         None)
