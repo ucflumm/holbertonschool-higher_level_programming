@@ -151,8 +151,16 @@ class TestRectangle(unittest.TestCase):
         with self.assertRaises(TypeError):
             r6 = Rectangle(1, 3, 4, None)
             r6.display()
-        r7 = Rectangle(1, 3, 4, 5, 666)
+        r7 = Rectangle(4,6)
+        r7.x = 0
+        r7.y = 0
         self.assertEqual(r7.display(), None)
+
+        r8 = Rectangle(None, None)
+        self.assertEqual(r8.display(), None)
+
+        r9 = Rectangle(1, None)
+        self.assertEqual(r9.display(), None)
 
     def test_str(self):
         """ Test __str__ method """

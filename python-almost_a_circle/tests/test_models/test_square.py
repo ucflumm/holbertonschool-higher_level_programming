@@ -373,6 +373,11 @@ class TestSquare(unittest.TestCase):
 
         def test_save_to_file_empty_list(self):
             """Test save_to_file method with an empty list"""
+            try:
+                os.remove("Square.json")
+            except FileExistsError:
+                pass
+
             Square.save_to_file([])
             with open("Square.json", "r") as file:
                 self.assertEqual(len(file.read()), 0)
