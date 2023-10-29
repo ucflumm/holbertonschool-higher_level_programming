@@ -276,7 +276,8 @@ class TestSquare(unittest.TestCase):
         Square.save_to_file([s1, s2])
         with open("Square.json", "r") as file:
             self.assertEqual(len(file.read()), 106)
-        Square.save_to_file(None)
+            with self.assertRaises(TypeError):
+                Square.save_to_file(None)
         with open("Square.json", "r") as file:
             self.assertEqual(len(file.read()), 2)
         Square.save_to_file([])
@@ -310,6 +311,21 @@ class TestSquare(unittest.TestCase):
         with open("Square.json", "r") as file:
             self.assertEqual(len(file.read()), 106)
         Square.save_to_file([s1, s2], 6)
+
+    def extra_tests(self):
+        """ Extra tests """
+        with self.assertRaises(TypeError):
+            s1 = Square("1")
+        with self.assertRaises(ValueError):
+            s2 = Square(-1)
+        with self.assertRaises(TypeError):
+            s3 = Square(1, -2)
+        with self.assertRaises(TypeError):
+            s4 = Square(1, 2, -3)
+        with self.assertRaises(TypeError):
+            s5 = Square(0)
+
+
 
 if __name__ == '__main__':
     unittest.main()
