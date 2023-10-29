@@ -79,5 +79,8 @@ class TestBase(unittest.TestCase):
                          [{"id": 1}, {"id": 2}, {"id": 3}, {"id": 4},
                           {"id": 5}])
 
+# missing Test of display() without x and y exists
+# missing Test of display() without y exists
+# missing Test of display() exists
     if __name__ == "__main__":
         unittest.main()
