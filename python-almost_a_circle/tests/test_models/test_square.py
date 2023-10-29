@@ -330,14 +330,6 @@ class TestSquare(unittest.TestCase):
         with self.assertRaises(ValueError):
             s5 = Square(0)
 
-# missing Test of Square.create(**{ 'id': 89 }) in Square exists
-# missing Test of Square.create(**{ 'id': 89, 'size': 1 }) in Square exists
-# missing Test of Square.create(**{ 'id': 89, 'size': 1, 'x': 2 }) in Square exists
-# missing Test of Square.create(**{ 'id': 89, 'size': 1, 'x': 2, 'y': 3 }) in Square exists
-# missing Test of Square.save_to_file([]) in Square exists
-# missing Test of Square.load_from_file() when file doesn’t exist exists
-# Test of Square.load_from_file() when file exists exists
-
     def test_create(self):
         """ Test create method """
         s1 = Square(3, 2, 1, 9)
@@ -378,10 +370,14 @@ class TestSquare(unittest.TestCase):
             except FileExistsError:
                 pass
 
-            Square.save_to_file([])
             with open("Square.json", "r") as file:
                 self.assertEqual(len(file.read()), 0)
             # Check if the file is empty or has zero length
 
 if __name__ == '__main__':
     unittest.main()
+
+
+# missing Test of Square.save_to_file([]) in Square exists
+# missing Test of Square.load_from_file() when file doesn’t exist exists
+# Test of Square.load_from_file() when file exists exists
