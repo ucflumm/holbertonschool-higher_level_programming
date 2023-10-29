@@ -4,7 +4,10 @@ import unittest
     Unit test for Square class
 """
 from models.square import Square
-
+import io
+import sys
+import os
+from io import StringIO
 
 class TestSquare(unittest.TestCase):
     """
@@ -181,6 +184,15 @@ class TestSquare(unittest.TestCase):
             s15 = Square(2, None, 3, 15)
             s15.display()
 
+    def test_square_display_missing(self):
+        """Test - display as expected without x or y"""
+        output = StringIO()
+        sys.stdout = output
+        s = Square(1)
+        s.display()
+        sys.stdout = sys.__stdout__
+        self.assertEqual(output.getvalue(), "#\n")
+
     def test_str(self):
         """ Test __str__ method """
         s1 = Square(4, 2, 1, 12)
@@ -202,7 +214,7 @@ class TestSquare(unittest.TestCase):
         s9 = Square(5, 1, 0, {"a": 1, "b": 2})
         self.assertEqual(s9.__str__(), "[Square] ({'a': 1, 'b': 2}) 1/0 - 5")
         s10 = Square(5, 1, 0, None)
-        self.assertEqual(s10.__str__(), "[Square] (75) 1/0 - 5")
+        self.assertEqual(s10.__str__(), "[Square] (77) 1/0 - 5")
 
     def test_update(self):
         """ Test update method """
@@ -238,13 +250,13 @@ class TestSquare(unittest.TestCase):
         self.assertEqual(s1_dictionary, {'id': 9, 'size': 10, 'x': 2, 'y': 1})
         self.assertEqual(type(s1_dictionary), dict)
         s2 = Square(1, 1)
-        self.assertEqual(s2.__str__(), "[Square] (76) 1/0 - 1")
+        self.assertEqual(s2.__str__(), "[Square] (78) 1/0 - 1")
         s2.update(**s1_dictionary)
         self.assertEqual(s2.__str__(), "[Square] (9) 2/1 - 10")
         self.assertNotEqual(s1, s2)
         self.assertEqual(s1_dictionary, s2.to_dictionary())
         s3 = Square(1, 1)
-        self.assertEqual(s3.__str__(), "[Square] (77) 1/0 - 1")
+        self.assertEqual(s3.__str__(), "[Square] (79) 1/0 - 1")
         s3.update(**s1.to_dictionary())
         self.assertNotEqual(s1, s3)
         self.assertEqual(s1_dictionary, s3.to_dictionary())
@@ -363,60 +375,37 @@ class TestSquare(unittest.TestCase):
         s9 = Square(3, 2, 1, 9)
         s9_dictionary = s9.to_dictionary()
 
-        def test_square_save_to_file_empty(self):
-            """Test - saves empty square to file"""
-            try:
-                os.remove("Square.json")
-            except FileExistsError:
-                pass
+    def test_square_save_to_file_empty(self):
+        """Test - saves empty square to file"""
+        try:
+            os.remove("Square.json")
+        except FileNotFoundError:
+            pass
 
-            Square.save_to_file([])
-            with open("Square.json", 'r', encoding="utf-8") as file:
-                s = file.read()
+        Square.save_to_file([])
+        with open("Square.json", 'r', encoding="utf-8") as file:
+            s = file.read()
             self.assertEqual(s, '[]')
             os.remove("Square.json")
 
-        def test_save_to_file_none(self):
-            try:
-                os.remove("Square.json")
-            except FileExistsError:
-                pass
-
-            Square.save_to_file([])
-            with open("Square.json", "r") as file:
-                square_1 = file.read()
-                self.assertEqual(square_1, "[]")
-
-        def test_load_from_file_when_file_does_not_exist(self):
-            """Test load_from_file when file doesn't exist"""
-            file_path = "non_existent_file.json"  # Replace this with the path to a non-existent file
-
-            # Perform the test
-            loaded_data = Square.load_from_file(file_path)
-            self.assertIsNone(loaded_data)  # Check if the method returns None when file doesn't exist
-
-        def test_load_from_file_when_file_exists(self):
-            """Test load_from_file when file exists"""
-            # Prepare a file that exists for the test
-            # For example, create a file or use an existing file for this test
-            file_path = "existing_file.json"  # Replace this with the path to an existing file
-
-            # Perform the test
-            # Assuming the 'load_from_file' method returns data from the file
-            loaded_data = Square.load_from_file(file_path)
-            # Add assertions to check the behavior of the method when the file exists
-            # For instance, you can check the type or structure of the loaded data
-
-            # Example assertion (modify based on the behavior of your method)
-            self.assertIsInstance(loaded_data, dict)  # Check if the loaded data is a dictionary
-
-            def test_square_save_to_file(self):
-                """Test - save square to file"""
-            Square.save_to_file([Square(1, 2)])
-            with open("Square.json", 'r', encoding="utf-8") as file:
-                s = file.read()
-            self.assertEqual(s, '[{"id": 44, "x": 2, "size": 1, "y": 0}]')
+    def test_save_to_file_none(self):
+        try:
             os.remove("Square.json")
+        except FileNotFoundError:
+            pass
+
+        Square.save_to_file([])
+        with open("Square.json", "r") as file:
+            square_1 = file.read()
+            self.assertEqual(square_1, "[]")
+
+        def test_square_save_to_file(self):
+            """Test - save square to file"""
+        Square.save_to_file([Square(1, 2)])
+        with open("Square.json", 'r', encoding="utf-8") as file:
+            s = file.read()
+        self.assertEqual(s, '[{"id": 72, "size": 1, "x": 2, "y": 0}]')
+        os.remove("Square.json")
 
 
 if __name__ == '__main__':
