@@ -407,6 +407,15 @@ class TestSquare(unittest.TestCase):
         self.assertEqual(s, '[{"id": 72, "size": 1, "x": 2, "y": 0}]')
         os.remove("Square.json")
 
+    def test_square_load_no_file(self):
+        """Test - load from non-existent file"""
+        try:
+            os.remove("Square.json")
+        except FileNotFoundError:
+            pass
+
+        self.assertEqual(Square.load_from_file(), [])
+
 
 if __name__ == '__main__':
     unittest.main()
