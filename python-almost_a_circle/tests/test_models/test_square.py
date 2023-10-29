@@ -13,9 +13,9 @@ class TestSquare(unittest.TestCase):
     def test_id(self):
         """ Test id attribute """
         s1 = Square(10)
-        self.assertEqual(s1.id, 53)
+        self.assertEqual(s1.id, 58)
         s2 = Square(2)
-        self.assertEqual(s2.id, 54)
+        self.assertEqual(s2.id, 59)
         s3 = Square(10, 0, 0, 12)
         self.assertEqual(s3.id, 12)
         s4 = Square(10, 0, 0, 0)
@@ -35,7 +35,7 @@ class TestSquare(unittest.TestCase):
         s11 = Square(10, 0, 0, {"a": 1, "b": 2})
         self.assertEqual(s11.id, {"a": 1, "b": 2})
         s12 = Square(10, 0, 0, None)
-        self.assertEqual(s12.id, 55)
+        self.assertEqual(s12.id, 60)
 
     def test_size(self):
         """ Test size attribute """
@@ -202,7 +202,7 @@ class TestSquare(unittest.TestCase):
         s9 = Square(5, 1, 0, {"a": 1, "b": 2})
         self.assertEqual(s9.__str__(), "[Square] ({'a': 1, 'b': 2}) 1/0 - 5")
         s10 = Square(5, 1, 0, None)
-        self.assertEqual(s10.__str__(), "[Square] (59) 1/0 - 5")
+        self.assertEqual(s10.__str__(), "[Square] (64) 1/0 - 5")
 
     def test_update(self):
         """ Test update method """
@@ -238,13 +238,13 @@ class TestSquare(unittest.TestCase):
         self.assertEqual(s1_dictionary, {'id': 9, 'size': 10, 'x': 2, 'y': 1})
         self.assertEqual(type(s1_dictionary), dict)
         s2 = Square(1, 1)
-        self.assertEqual(s2.__str__(), "[Square] (60) 1/0 - 1")
+        self.assertEqual(s2.__str__(), "[Square] (65) 1/0 - 1")
         s2.update(**s1_dictionary)
         self.assertEqual(s2.__str__(), "[Square] (9) 2/1 - 10")
         self.assertNotEqual(s1, s2)
         self.assertEqual(s1_dictionary, s2.to_dictionary())
         s3 = Square(1, 1)
-        self.assertEqual(s3.__str__(), "[Square] (61) 1/0 - 1")
+        self.assertEqual(s3.__str__(), "[Square] (66) 1/0 - 1")
         s3.update(**s1.to_dictionary())
         self.assertNotEqual(s1, s3)
         self.assertEqual(s1_dictionary, s3.to_dictionary())
@@ -269,15 +269,14 @@ class TestSquare(unittest.TestCase):
         s6.update(**s1.to_dictionary())
         self.assertNotEqual(s1, s6)
 
-    def save_to_file(self):
+    def test_save_to_file(self):
         """ Test save_to_file method """
         s1 = Square(10, 7, 2, 8)
         s2 = Square(2, 4, 0, 9)
         Square.save_to_file([s1, s2])
         with open("Square.json", "r") as file:
-            self.assertEqual(len(file.read()), 106)
-            with self.assertRaises(TypeError):
-                Square.save_to_file(None)
+            self.assertEqual(len(file.read()), 77)
+            Square.save_to_file(None)
         with open("Square.json", "r") as file:
             self.assertEqual(len(file.read()), 2)
         Square.save_to_file([])
@@ -285,44 +284,50 @@ class TestSquare(unittest.TestCase):
             self.assertEqual(len(file.read()), 2)
         Square.save_to_file([s1])
         with open("Square.json", "r") as file:
-            self.assertEqual(len(file.read()), 53)
+            self.assertEqual(len(file.read()), 39)
         Square.save_to_file([s2])
         with open("Square.json", "r") as file:
-            self.assertEqual(len(file.read()), 53)
+            self.assertEqual(len(file.read()), 38)
         Square.save_to_file([s1, s2])
         with open("Square.json", "r") as file:
-            self.assertEqual(len(file.read()), 106)
+            self.assertEqual(len(file.read()), 77)
         Square.save_to_file([s2, s1])
         with open("Square.json", "r") as file:
-            self.assertEqual(len(file.read()), 106)
-        Square.save_to_file([s1, s2], 1)
+            self.assertEqual(len(file.read()), 77)
+        with self.assertRaises(TypeError):
+            Square.save_to_file([s1, s2], 1)
         with open("Square.json", "r") as file:
-            self.assertEqual(len(file.read()), 106)
-        Square.save_to_file([s1, s2], 2)
+            self.assertEqual(len(file.read()), 77)
+        with self.assertRaises(TypeError):
+            Square.save_to_file([s1, s2], 2)
         with open("Square.json", "r") as file:
-            self.assertEqual(len(file.read()), 106)
-        Square.save_to_file([s1, s2], 3)
+            self.assertEqual(len(file.read()), 77)
+        with self.assertRaises(TypeError):
+            Square.save_to_file([s1, s2], 3)
         with open("Square.json", "r") as file:
-            self.assertEqual(len(file.read()), 106)
-        Square.save_to_file([s1, s2], 4)
+            self.assertEqual(len(file.read()), 77)
+        with self.assertRaises(TypeError):
+            Square.save_to_file([s1, s2], 4)
         with open("Square.json", "r") as file:
-            self.assertEqual(len(file.read()), 106)
-        Square.save_to_file([s1, s2], 5)
+            self.assertEqual(len(file.read()), 77)
+        with self.assertRaises(TypeError):
+            Square.save_to_file([s1, s2], 5)
         with open("Square.json", "r") as file:
-            self.assertEqual(len(file.read()), 106)
-        Square.save_to_file([s1, s2], 6)
+            self.assertEqual(len(file.read()), 77)
+        with self.assertRaises(TypeError):
+            Square.save_to_file([s1, s2], 6)
 
-    def extra_tests(self):
+    def test_extra_tests(self):
         """ Extra tests """
         with self.assertRaises(TypeError):
             s1 = Square("1")
         with self.assertRaises(ValueError):
             s2 = Square(-1)
-        with self.assertRaises(TypeError):
+        with self.assertRaises(ValueError):
             s3 = Square(1, -2)
-        with self.assertRaises(TypeError):
+        with self.assertRaises(ValueError):
             s4 = Square(1, 2, -3)
-        with self.assertRaises(TypeError):
+        with self.assertRaises(ValueError):
             s5 = Square(0)
 
 
