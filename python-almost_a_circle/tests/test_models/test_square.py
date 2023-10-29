@@ -16,9 +16,9 @@ class TestSquare(unittest.TestCase):
     def test_id(self):
         """ Test id attribute """
         s1 = Square(10)
-        self.assertEqual(s1.id, 69)
+        self.assertEqual(s1.id, 70)
         s2 = Square(2)
-        self.assertEqual(s2.id, 70)
+        self.assertEqual(s2.id, 71)
         s3 = Square(10, 0, 0, 12)
         self.assertEqual(s3.id, 12)
         s4 = Square(10, 0, 0, 0)
@@ -38,7 +38,7 @@ class TestSquare(unittest.TestCase):
         s11 = Square(10, 0, 0, {"a": 1, "b": 2})
         self.assertEqual(s11.id, {"a": 1, "b": 2})
         s12 = Square(10, 0, 0, None)
-        self.assertEqual(s12.id, 71)
+        self.assertEqual(s12.id, 72)
 
     def test_size(self):
         """ Test size attribute """
@@ -214,7 +214,7 @@ class TestSquare(unittest.TestCase):
         s9 = Square(5, 1, 0, {"a": 1, "b": 2})
         self.assertEqual(s9.__str__(), "[Square] ({'a': 1, 'b': 2}) 1/0 - 5")
         s10 = Square(5, 1, 0, None)
-        self.assertEqual(s10.__str__(), "[Square] (77) 1/0 - 5")
+        self.assertEqual(s10.__str__(), "[Square] (78) 1/0 - 5")
 
     def test_update(self):
         """ Test update method """
@@ -250,13 +250,13 @@ class TestSquare(unittest.TestCase):
         self.assertEqual(s1_dictionary, {'id': 9, 'size': 10, 'x': 2, 'y': 1})
         self.assertEqual(type(s1_dictionary), dict)
         s2 = Square(1, 1)
-        self.assertEqual(s2.__str__(), "[Square] (78) 1/0 - 1")
+        self.assertEqual(s2.__str__(), "[Square] (79) 1/0 - 1")
         s2.update(**s1_dictionary)
         self.assertEqual(s2.__str__(), "[Square] (9) 2/1 - 10")
         self.assertNotEqual(s1, s2)
         self.assertEqual(s1_dictionary, s2.to_dictionary())
         s3 = Square(1, 1)
-        self.assertEqual(s3.__str__(), "[Square] (79) 1/0 - 1")
+        self.assertEqual(s3.__str__(), "[Square] (80) 1/0 - 1")
         s3.update(**s1.to_dictionary())
         self.assertNotEqual(s1, s3)
         self.assertEqual(s1_dictionary, s3.to_dictionary())
@@ -404,7 +404,7 @@ class TestSquare(unittest.TestCase):
         Square.save_to_file([Square(1, 2)])
         with open("Square.json", 'r', encoding="utf-8") as file:
             s = file.read()
-        self.assertEqual(s, '[{"id": 72, "size": 1, "x": 2, "y": 0}]')
+        self.assertEqual(s, '[{"id": 73, "size": 1, "x": 2, "y": 0}]')
         os.remove("Square.json")
 
     def test_square_load_no_file(self):

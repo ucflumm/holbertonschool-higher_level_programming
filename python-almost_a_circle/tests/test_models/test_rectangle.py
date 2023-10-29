@@ -6,6 +6,8 @@ import unittest
 from models.rectangle import Rectangle
 import io
 import os
+import sys
+from io import StringIO
 
 
 class TestRectangle(unittest.TestCase):
@@ -137,6 +139,8 @@ class TestRectangle(unittest.TestCase):
 
     def test_display(self):
         """ Test display method """
+        r0 = Rectangle(2, 3, 4, 5, 6)
+        r0.display()
         r1 = Rectangle(4, 6)
         self.assertEqual(r1.display(), None)
         r2 = Rectangle(2, 2)
@@ -167,14 +171,14 @@ class TestRectangle(unittest.TestCase):
         r1 = Rectangle(4, 6, 2, 1, 12)
         self.assertEqual(r1.__str__(), "[Rectangle] (12) 2/1 - 4/6")
         r2 = Rectangle(5, 5, 1)
-        self.assertEqual(r2.__str__(), "[Rectangle] (38) 1/0 - 5/5")
+        self.assertEqual(r2.__str__(), "[Rectangle] (39) 1/0 - 5/5")
         r3 = Rectangle(5, 5)
-        self.assertEqual(r3.__str__(), "[Rectangle] (39) 0/0 - 5/5")
+        self.assertEqual(r3.__str__(), "[Rectangle] (40) 0/0 - 5/5")
 
     def test_update(self):
         """ Test update method """
         r1 = Rectangle(10, 10, 10, 10)
-        self.assertEqual(r1.__str__(), "[Rectangle] (45) 10/10 - 10/10")
+        self.assertEqual(r1.__str__(), "[Rectangle] (46) 10/10 - 10/10")
         r1.update(89)
         self.assertEqual(r1.__str__(), "[Rectangle] (89) 10/10 - 10/10")
         r1.update(89, 2)
@@ -197,11 +201,11 @@ class TestRectangle(unittest.TestCase):
     def test_update_kwargs(self):
         """ Test update method with **kwargs """
         r1 = Rectangle(10, 10, 10, 10)
-        self.assertEqual(r1.__str__(), "[Rectangle] (46) 10/10 - 10/10")
+        self.assertEqual(r1.__str__(), "[Rectangle] (47) 10/10 - 10/10")
         r1.update(height=1)
-        self.assertEqual(r1.__str__(), "[Rectangle] (46) 10/10 - 10/1")
+        self.assertEqual(r1.__str__(), "[Rectangle] (47) 10/10 - 10/1")
         r1.update(width=1, x=2)
-        self.assertEqual(r1.__str__(), "[Rectangle] (46) 2/10 - 1/1")
+        self.assertEqual(r1.__str__(), "[Rectangle] (47) 2/10 - 1/1")
         r1.update(y=1, width=2, x=3, id=89)
         self.assertEqual(r1.__str__(), "[Rectangle] (89) 3/1 - 2/1")
         r1.update(x=1, height=2, y=3, width=4)
@@ -213,16 +217,16 @@ class TestRectangle(unittest.TestCase):
         """ Test to_dictionary method """
         r1 = Rectangle(10, 2, 1, 9)
         self.assertEqual(r1.to_dictionary(),
-                         {'x': 1, 'y': 9, 'id': 40, 'height': 2, 'width': 10})
+                         {'x': 1, 'y': 9, 'id': 41, 'height': 2, 'width': 10})
         r2 = Rectangle(1, 1)
         self.assertEqual(r2.to_dictionary(),
-                         {'x': 0, 'y': 0, 'id': 41, 'height': 1, 'width': 1})
+                         {'x': 0, 'y': 0, 'id': 42, 'height': 1, 'width': 1})
         r3 = Rectangle(1, 1, 1)
         self.assertEqual(r3.to_dictionary(),
-                         {'x': 1, 'y': 0, 'id': 42, 'height': 1, 'width': 1})
+                         {'x': 1, 'y': 0, 'id': 43, 'height': 1, 'width': 1})
         r4 = Rectangle(1, 1, 1, 1)
         self.assertEqual(r4.to_dictionary(),
-                         {'x': 1, 'y': 1, 'id': 43, 'height': 1, 'width': 1})
+                         {'x': 1, 'y': 1, 'id': 44, 'height': 1, 'width': 1})
         r5 = Rectangle(1, 1, 1, 1, 1)
         self.assertEqual(r5.to_dictionary(),
                          {'x': 1, 'y': 1, 'id': 1, 'height': 1, 'width': 1})
@@ -325,54 +329,34 @@ class TestRectangle(unittest.TestCase):
             # Modify the assertion based on what is expected after saving an empty list
         os.remove("Rectangle.json")
 
-        def test_save_to_file_empty_list(self):
-            """ Test save_to_file method with empty list """
-            list_rectangles_input = []
-            Rectangle.save_to_file(list_rectangles_input)
-            with open("Rectangle.json", "r") as file:
-                self.assertEqual(file.read(), "[]")
+    def test_save_to_file_empty_list(self):
+        """ Test save_to_file method with empty list """
+        list_rectangles_input = []
+        Rectangle.save_to_file(list_rectangles_input)
+        with open("Rectangle.json", "r") as file:
+            self.assertEqual(file.read(), "[]")
 
-        def test_save_to_file_None(self):
-            """ Test save_to_file method with None """
-            Rectangle.save_to_file(None)
-            with open("Rectangle.json", "r") as file:
-                self.assertEqual(file.read(), "[]")
-            self.assertEqual(Rectangle.save_to_file(None), None)
+    def test_save_to_file_None(self):
+        """ Test save_to_file method with None """
+        Rectangle.save_to_file(None)
+        with open("Rectangle.json", "r") as file:
+            self.assertEqual(file.read(), "[]")
+        self.assertEqual(Rectangle.save_to_file(None), None)
 
-            Rectangle.save_to_file([])
-            with open("Rectangle.json", "r") as file:
-                rectangle = f.read()
-            self.assertEqual(rectangle, "[]")
+        Rectangle.save_to_file([])
+        with open("Rectangle.json", "r") as file:
+            rectangle = file.read()
+        self.assertEqual(rectangle, "[]")
 
-        def test_save_to_file_more_than_one_same_id(self):
-            """ Test save_to_file method with more than one rectangle with same id
-            """
-            r1 = Rectangle(10, 7, 2, 8)
-            r2 = Rectangle(2, 4)
-            list_rectangles_input = [r1, r2]
-            Rectangle.save_to_file(list_rectangles_input)
-            with open("Rectangle.json", "r") as file:
-                self.assertEqual(len(file.read()), 106)
-            with open("Rectangle.json", "r") as file:
-                self.assertEqual(file.read(), '[{"y": 8, "x": 2, "id": 23, \
-            "width": 10, "height": 7}, {"y": 0, "x": 0, "id": 24, "width": 2, \
-            "height": 4}]')
+    def test_rectangle_display_x_y(self):
+        """Test - display as expected with x and y"""
+        output = StringIO()
+        sys.stdout = output
+        r = Rectangle(1, 1, 1, 1)
+        r.display()
+        sys.stdout = sys.__stdout__
+        self.assertEqual(output.getvalue(), "\n #\n")
 
-        def test_square_load_no_file(self):
-            """ Test load_from_file method with no file """
-            try:
-                os.remove("Rectangle.json")
-            except FileNotFoundError:
-                pass
-            self.assertEqual(Rectangle.load_from_file(), [])
-
-            square_99 = Square(4, 6, 12, 3)
-            output_99 = '[Square] (4) 2/3 - 1'
-            list_sq_input = [square_99]
-            Square.save_to_file(list_sq_input)
-            list_sq_output = Square.load_from_file()
-            self.assertEqual(list_sq_output[0].__str__(), output_99)
-            self.assertFalse(list_sq_output[0] is square_99)
 
 # missng Rectangle.save_to_file([]) test case
 if __name__ == '__main__':
