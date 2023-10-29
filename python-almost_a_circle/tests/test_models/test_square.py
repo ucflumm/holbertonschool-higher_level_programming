@@ -363,16 +363,18 @@ class TestSquare(unittest.TestCase):
         s9 = Square(3, 2, 1, 9)
         s9_dictionary = s9.to_dictionary()
 
-        def test_save_to_file_empty_list(self):
-            """Test save_to_file method with an empty list"""
+        def test_square_save_to_file_empty(self):
+            """Test - saves empty square to file"""
             try:
                 os.remove("Square.json")
             except FileExistsError:
                 pass
 
-            with open("Square.json", "r") as file:
-                self.assertEqual(len(file.read()), 0)
-            # Check if the file is empty or has zero length
+            Square.save_to_file([])
+            with open("Square.json", 'r', encoding="utf-8") as file:
+                s = file.read()
+            self.assertEqual(s, '[]')
+            os.remove("Square.json")
 
         def test_save_to_file_none(self):
             try:
