@@ -4,6 +4,8 @@ import unittest
     Unit test for Rectangle class
 """
 from models.rectangle import Rectangle
+import io
+import os
 
 
 class TestRectangle(unittest.TestCase):
@@ -307,6 +309,13 @@ class TestRectangle(unittest.TestCase):
         Rectangle.save_to_file(list_rectangles_input)
         with open("Rectangle.json", "r") as file:
             self.assertEqual(len(file.read()), 107)
+        os.remove("Rectangle.json")
+        Rectangle.save_to_file([])
+        with open("Rectangle.json", "r") as file:
+            # Replace 'Rectangle.json' with the filename used by your save_to_file method
+            self.assertEqual(len(file.read()), 2)  # Check if the file is empty or has zero length
+            # Modify the assertion based on what is expected after saving an empty list
+        os.remove("Rectangle.json")
 
         def test_save_to_file_empty_list(self):
             """ Test save_to_file method with empty list """

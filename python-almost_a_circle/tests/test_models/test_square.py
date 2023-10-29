@@ -371,5 +371,12 @@ class TestSquare(unittest.TestCase):
         s9 = Square(3, 2, 1, 9)
         s9_dictionary = s9.to_dictionary()
 
+        def test_save_to_file_empty_list(self):
+            """Test save_to_file method with an empty list"""
+            Square.save_to_file([])
+            with open("Square.json", "r") as file:
+                self.assertEqual(len(file.read()), 0)
+            # Check if the file is empty or has zero length
+
 if __name__ == '__main__':
     unittest.main()
