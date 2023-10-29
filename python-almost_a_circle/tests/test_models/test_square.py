@@ -408,6 +408,14 @@ class TestSquare(unittest.TestCase):
             # Example assertion (modify based on the behavior of your method)
             self.assertIsInstance(loaded_data, dict)  # Check if the loaded data is a dictionary
 
+            def test_square_save_to_file(self):
+                """Test - save square to file"""
+            Square.save_to_file([Square(1, 2)])
+            with open("Square.json", 'r', encoding="utf-8") as file:
+                s = file.read()
+            self.assertEqual(s, '[{"id": 44, "x": 2, "size": 1, "y": 0}]')
+            os.remove("Square.json")
+
 
 if __name__ == '__main__':
     unittest.main()
