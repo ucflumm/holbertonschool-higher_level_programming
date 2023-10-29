@@ -374,6 +374,7 @@ class TestSquare(unittest.TestCase):
                 self.assertEqual(len(file.read()), 0)
             # Check if the file is empty or has zero length
 
+        def test_save_to_file_none(self):
             try:
                 os.remove("Square.json")
             except FileExistsError:
