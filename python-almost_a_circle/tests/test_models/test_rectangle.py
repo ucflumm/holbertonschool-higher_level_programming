@@ -13,7 +13,7 @@ class TestRectangle(unittest.TestCase):
     def test_id(self):
         """ Test id attribute """
         r1 = Rectangle(10, 2)
-        self.assertEqual(r1.id, 20)
+        self.assertEqual(r1.id, 23)
         r1 = Rectangle(10, 2, 0, 0, 12)
         self.assertEqual(r1.id, 12)
         r1 = Rectangle(10, 2, 0, 0, 0)
@@ -33,7 +33,7 @@ class TestRectangle(unittest.TestCase):
         r1 = Rectangle(10, 2, 0, 0, {"a": 1, "b": 2})
         self.assertEqual(r1.id, {"a": 1, "b": 2})
         r1 = Rectangle(10, 2, 0, 0, None)
-        self.assertEqual(r1.id, 21)
+        self.assertEqual(r1.id, 24)
 
     def test_negative_args(self):
         """ Test negative arguments """
@@ -156,25 +156,25 @@ class TestRectangle(unittest.TestCase):
         r7.y = 0
         self.assertEqual(r7.display(), None)
 
-        r8 = Rectangle(None, None)
-        self.assertEqual(r8.display(), None)
+        with self.assertRaises(TypeError):
+            r8 = Rectangle(None, None)
 
-        r9 = Rectangle(1, None)
-        self.assertEqual(r9.display(), None)
+        with self.assertRaises(TypeError):
+            r9 = Rectangle(1, None)
 
     def test_str(self):
         """ Test __str__ method """
         r1 = Rectangle(4, 6, 2, 1, 12)
         self.assertEqual(r1.__str__(), "[Rectangle] (12) 2/1 - 4/6")
         r2 = Rectangle(5, 5, 1)
-        self.assertEqual(r2.__str__(), "[Rectangle] (35) 1/0 - 5/5")
+        self.assertEqual(r2.__str__(), "[Rectangle] (38) 1/0 - 5/5")
         r3 = Rectangle(5, 5)
-        self.assertEqual(r3.__str__(), "[Rectangle] (36) 0/0 - 5/5")
+        self.assertEqual(r3.__str__(), "[Rectangle] (39) 0/0 - 5/5")
 
     def test_update(self):
         """ Test update method """
         r1 = Rectangle(10, 10, 10, 10)
-        self.assertEqual(r1.__str__(), "[Rectangle] (42) 10/10 - 10/10")
+        self.assertEqual(r1.__str__(), "[Rectangle] (45) 10/10 - 10/10")
         r1.update(89)
         self.assertEqual(r1.__str__(), "[Rectangle] (89) 10/10 - 10/10")
         r1.update(89, 2)
@@ -197,11 +197,11 @@ class TestRectangle(unittest.TestCase):
     def test_update_kwargs(self):
         """ Test update method with **kwargs """
         r1 = Rectangle(10, 10, 10, 10)
-        self.assertEqual(r1.__str__(), "[Rectangle] (43) 10/10 - 10/10")
+        self.assertEqual(r1.__str__(), "[Rectangle] (46) 10/10 - 10/10")
         r1.update(height=1)
-        self.assertEqual(r1.__str__(), "[Rectangle] (43) 10/10 - 10/1")
+        self.assertEqual(r1.__str__(), "[Rectangle] (46) 10/10 - 10/1")
         r1.update(width=1, x=2)
-        self.assertEqual(r1.__str__(), "[Rectangle] (43) 2/10 - 1/1")
+        self.assertEqual(r1.__str__(), "[Rectangle] (46) 2/10 - 1/1")
         r1.update(y=1, width=2, x=3, id=89)
         self.assertEqual(r1.__str__(), "[Rectangle] (89) 3/1 - 2/1")
         r1.update(x=1, height=2, y=3, width=4)
@@ -213,16 +213,16 @@ class TestRectangle(unittest.TestCase):
         """ Test to_dictionary method """
         r1 = Rectangle(10, 2, 1, 9)
         self.assertEqual(r1.to_dictionary(),
-                         {'x': 1, 'y': 9, 'id': 37, 'height': 2, 'width': 10})
+                         {'x': 1, 'y': 9, 'id': 40, 'height': 2, 'width': 10})
         r2 = Rectangle(1, 1)
         self.assertEqual(r2.to_dictionary(),
-                         {'x': 0, 'y': 0, 'id': 38, 'height': 1, 'width': 1})
+                         {'x': 0, 'y': 0, 'id': 41, 'height': 1, 'width': 1})
         r3 = Rectangle(1, 1, 1)
         self.assertEqual(r3.to_dictionary(),
-                         {'x': 1, 'y': 0, 'id': 39, 'height': 1, 'width': 1})
+                         {'x': 1, 'y': 0, 'id': 42, 'height': 1, 'width': 1})
         r4 = Rectangle(1, 1, 1, 1)
         self.assertEqual(r4.to_dictionary(),
-                         {'x': 1, 'y': 1, 'id': 40, 'height': 1, 'width': 1})
+                         {'x': 1, 'y': 1, 'id': 43, 'height': 1, 'width': 1})
         r5 = Rectangle(1, 1, 1, 1, 1)
         self.assertEqual(r5.to_dictionary(),
                          {'x': 1, 'y': 1, 'id': 1, 'height': 1, 'width': 1})
@@ -273,7 +273,7 @@ class TestRectangle(unittest.TestCase):
         Rectangle.save_to_file(list_rectangles_input)
         list_rectangles_output = Rectangle.load_from_file()
         self.assertEqual(list_rectangles_output[0].__str__(),
-                         "[Rectangle] (22) 2/8 - 10/7")
+                         "[Rectangle] (25) 2/8 - 10/7")
         self.assertFalse(list_rectangles_output[0] is r1)
         self.assertFalse(list_rectangles_output[0] == r1)
         self.assertEqual(list_rectangles_output[0].id, r1.id)
@@ -291,9 +291,9 @@ class TestRectangle(unittest.TestCase):
         Rectangle.save_to_file(list_rectangles_input)
         list_rectangles_output = Rectangle.load_from_file()
         self.assertEqual(list_rectangles_output[0].__str__(),
-                         "[Rectangle] (24) 2/8 - 10/7")
+                         "[Rectangle] (27) 2/8 - 10/7")
         self.assertEqual(list_rectangles_output[1].__str__(),
-                         "[Rectangle] (25) 0/0 - 2/4")
+                         "[Rectangle] (28) 0/0 - 2/4")
         self.assertFalse(list_rectangles_output[0] is r1)
         self.assertFalse(list_rectangles_output[0] == r1)
         self.assertEqual(list_rectangles_output[0].id, r1.id)
