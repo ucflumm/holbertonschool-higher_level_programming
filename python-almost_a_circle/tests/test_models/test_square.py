@@ -374,6 +374,17 @@ class TestSquare(unittest.TestCase):
                 self.assertEqual(len(file.read()), 0)
             # Check if the file is empty or has zero length
 
+            try:
+                os.remove("Square.json")
+            except FileExistsError:
+                pass
+
+            Square.save_to_file([])
+            with open("Square.json", "r") as file:
+                self.assertEqual(len(file.read()), 2)
+
+
+
 if __name__ == '__main__':
     unittest.main()
 
