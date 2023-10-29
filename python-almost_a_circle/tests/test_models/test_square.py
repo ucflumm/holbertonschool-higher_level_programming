@@ -13,9 +13,9 @@ class TestSquare(unittest.TestCase):
     def test_id(self):
         """ Test id attribute """
         s1 = Square(10)
-        self.assertEqual(s1.id, 45)
+        self.assertEqual(s1.id, 53)
         s2 = Square(2)
-        self.assertEqual(s2.id, 46)
+        self.assertEqual(s2.id, 54)
         s3 = Square(10, 0, 0, 12)
         self.assertEqual(s3.id, 12)
         s4 = Square(10, 0, 0, 0)
@@ -35,7 +35,7 @@ class TestSquare(unittest.TestCase):
         s11 = Square(10, 0, 0, {"a": 1, "b": 2})
         self.assertEqual(s11.id, {"a": 1, "b": 2})
         s12 = Square(10, 0, 0, None)
-        self.assertEqual(s12.id, 47)
+        self.assertEqual(s12.id, 55)
 
     def test_size(self):
         """ Test size attribute """
@@ -171,6 +171,15 @@ class TestSquare(unittest.TestCase):
         self.assertEqual(s11.display(), None)
         s12 = Square(2, 2, 2, None)
         self.assertEqual(s12.display(), None)
+        with self.assertRaises(TypeError):
+            s13 = Square(2, None, None, 13)
+            s13.display()
+        with self.assertRaises(TypeError):
+            s14 = Square(2, 3, None, 14)
+            s14.display()
+        with self.assertRaises(TypeError):
+            s15 = Square(2, None, 3, 15)
+            s15.display()
 
     def test_str(self):
         """ Test __str__ method """
@@ -193,7 +202,7 @@ class TestSquare(unittest.TestCase):
         s9 = Square(5, 1, 0, {"a": 1, "b": 2})
         self.assertEqual(s9.__str__(), "[Square] ({'a': 1, 'b': 2}) 1/0 - 5")
         s10 = Square(5, 1, 0, None)
-        self.assertEqual(s10.__str__(), "[Square] (51) 1/0 - 5")
+        self.assertEqual(s10.__str__(), "[Square] (59) 1/0 - 5")
 
     def test_update(self):
         """ Test update method """
@@ -229,13 +238,13 @@ class TestSquare(unittest.TestCase):
         self.assertEqual(s1_dictionary, {'id': 9, 'size': 10, 'x': 2, 'y': 1})
         self.assertEqual(type(s1_dictionary), dict)
         s2 = Square(1, 1)
-        self.assertEqual(s2.__str__(), "[Square] (52) 1/0 - 1")
+        self.assertEqual(s2.__str__(), "[Square] (60) 1/0 - 1")
         s2.update(**s1_dictionary)
         self.assertEqual(s2.__str__(), "[Square] (9) 2/1 - 10")
         self.assertNotEqual(s1, s2)
         self.assertEqual(s1_dictionary, s2.to_dictionary())
         s3 = Square(1, 1)
-        self.assertEqual(s3.__str__(), "[Square] (53) 1/0 - 1")
+        self.assertEqual(s3.__str__(), "[Square] (61) 1/0 - 1")
         s3.update(**s1.to_dictionary())
         self.assertNotEqual(s1, s3)
         self.assertEqual(s1_dictionary, s3.to_dictionary())
