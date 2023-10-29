@@ -269,5 +269,47 @@ class TestSquare(unittest.TestCase):
         s6.update(**s1.to_dictionary())
         self.assertNotEqual(s1, s6)
 
+    def save_to_file(self):
+        """ Test save_to_file method """
+        s1 = Square(10, 7, 2, 8)
+        s2 = Square(2, 4, 0, 9)
+        Square.save_to_file([s1, s2])
+        with open("Square.json", "r") as file:
+            self.assertEqual(len(file.read()), 106)
+        Square.save_to_file(None)
+        with open("Square.json", "r") as file:
+            self.assertEqual(len(file.read()), 2)
+        Square.save_to_file([])
+        with open("Square.json", "r") as file:
+            self.assertEqual(len(file.read()), 2)
+        Square.save_to_file([s1])
+        with open("Square.json", "r") as file:
+            self.assertEqual(len(file.read()), 53)
+        Square.save_to_file([s2])
+        with open("Square.json", "r") as file:
+            self.assertEqual(len(file.read()), 53)
+        Square.save_to_file([s1, s2])
+        with open("Square.json", "r") as file:
+            self.assertEqual(len(file.read()), 106)
+        Square.save_to_file([s2, s1])
+        with open("Square.json", "r") as file:
+            self.assertEqual(len(file.read()), 106)
+        Square.save_to_file([s1, s2], 1)
+        with open("Square.json", "r") as file:
+            self.assertEqual(len(file.read()), 106)
+        Square.save_to_file([s1, s2], 2)
+        with open("Square.json", "r") as file:
+            self.assertEqual(len(file.read()), 106)
+        Square.save_to_file([s1, s2], 3)
+        with open("Square.json", "r") as file:
+            self.assertEqual(len(file.read()), 106)
+        Square.save_to_file([s1, s2], 4)
+        with open("Square.json", "r") as file:
+            self.assertEqual(len(file.read()), 106)
+        Square.save_to_file([s1, s2], 5)
+        with open("Square.json", "r") as file:
+            self.assertEqual(len(file.read()), 106)
+        Square.save_to_file([s1, s2], 6)
+
 if __name__ == '__main__':
     unittest.main()
