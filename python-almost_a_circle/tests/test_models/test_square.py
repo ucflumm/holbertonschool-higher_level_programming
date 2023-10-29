@@ -385,6 +385,28 @@ class TestSquare(unittest.TestCase):
                 square_1 = file.read()
                 self.assertEqual(square_1, "[]")
 
+        def test_load_from_file_when_file_does_not_exist(self):
+            """Test load_from_file when file doesn't exist"""
+            file_path = "non_existent_file.json"  # Replace this with the path to a non-existent file
+
+            # Perform the test
+            loaded_data = Square.load_from_file(file_path)
+            self.assertIsNone(loaded_data)  # Check if the method returns None when file doesn't exist
+
+        def test_load_from_file_when_file_exists(self):
+            """Test load_from_file when file exists"""
+            # Prepare a file that exists for the test
+            # For example, create a file or use an existing file for this test
+            file_path = "existing_file.json"  # Replace this with the path to an existing file
+
+            # Perform the test
+            # Assuming the 'load_from_file' method returns data from the file
+            loaded_data = Square.load_from_file(file_path)
+            # Add assertions to check the behavior of the method when the file exists
+            # For instance, you can check the type or structure of the loaded data
+
+            # Example assertion (modify based on the behavior of your method)
+            self.assertIsInstance(loaded_data, dict)  # Check if the loaded data is a dictionary
 
 
 if __name__ == '__main__':
